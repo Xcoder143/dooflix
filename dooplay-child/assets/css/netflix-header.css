@@ -1,0 +1,649 @@
+/* ======================================================
+   NETFLIX HEADER — BASE
+====================================================== */
+
+#nfx-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 72px;
+    z-index: 9999;
+    background: transparent;
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color .3s ease, box-shadow .3s ease;
+}
+
+#nfx-header.nav_black {
+    background: #141414;
+    background-image: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+}
+
+
+/* Remove DooPlay padding */
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+/* ======================================================
+   NAV WRAPPER
+====================================================== */
+
+.nfx-nav {
+    width: 100%;
+    height: 100%;
+    padding: 0 3%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* ======================================================
+   LEFT SIDE (Logo + Menu)
+====================================================== */
+
+.nfx-left {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nfx-logo img {
+    height: 32px;
+    width: auto;
+}
+
+/* Desktop menu */
+.nfx-menu .nfx-menu-list {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+.nfx-menu .nfx-menu-list li a {
+    color: #e5e5e5;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color .3s ease;
+}
+
+.nfx-menu .nfx-menu-list li a:hover {
+    color: white;
+}
+
+
+/* ======================================================
+   RIGHT SIDE (Search + User + Mobile)
+====================================================== */
+
+.nfx-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+/* SEARCH BUTTON */
+.nfx-search-btn {
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+
+/* Search panel container with Animation */
+.nfx-search-panel {
+    position: absolute;
+    top: 72px;
+    right: 3%;
+    width: 300px; /* Slightly wider for better hovering */
+    background: #111;
+    padding: 12px;
+    border-radius: 6px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    z-index: 30000;
+    
+    /* Animation Start State */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.nfx-search-panel.open {
+    /* Animation End State */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+
+/* ======================================================
+   PROFILE DROPDOWN (Netflix Style)
+====================================================== */
+
+.nfx-profile {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 8px;
+    position: relative;
+}
+
+.nfx-avatar img {
+    height: 32px;
+    width: 32px;
+    border-radius: 4px;
+}
+
+.nfx-profile i {
+    color: white;
+    font-size: 14px;
+}
+
+.nfx-profile-dropdown {
+    position: absolute;
+    top: 48px;
+    right: 0;
+    width: 160px;
+    background: #141414;
+    padding: 12px 0;
+    border-radius: 6px;
+    display: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+    z-index: 31000;
+}
+
+.nfx-profile-dropdown.open {
+    display: block;
+}
+
+.nfx-profile-dropdown a {
+    padding: 10px 14px;
+    display: block;
+    color: #e5e5e5;
+    text-decoration: none;
+    transition: background .2s;
+}
+
+.nfx-profile-dropdown a:hover {
+    background: #222;
+}
+
+
+/* LOGIN ICON */
+.nfx-login {
+    font-size: 28px;
+    color: white;
+    text-decoration: none;
+}
+
+
+/* ======================================================
+   MOBILE MENU BUTTON
+====================================================== */
+
+.nfx-mobile-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+
+/* ======================================================
+   MOBILE SLIDE MENU
+====================================================== */
+
+.nfx-mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 78%;
+    max-width: 350px;
+    height: 100vh;
+    background: #0d0d0d;
+    padding: 22px 20px;
+    transition: right .35s ease;
+    z-index: 32000;
+    box-shadow: -6px 0 20px rgba(0,0,0,0.6);
+}
+
+.nfx-mobile-menu.open {
+    right: 0;
+}
+
+/* Mobile Header Top */
+.nfx-mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nfx-mobile-logo img {
+    height: 28px;
+}
+
+.nfx-mobile-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Mobile Menu List */
+.nfx-mobile-menu-ul {
+    list-style: none;
+    margin-top: 25px;
+    padding: 0;
+}
+
+.nfx-mobile-menu-ul li a {
+    display: block;
+    padding: 14px 0;
+    font-size: 18px;
+    color: #eee;
+    text-decoration: none;
+    transition: color .2s;
+}
+
+.nfx-mobile-menu-ul li a:hover {
+    color: white;
+}
+
+/* Mobile Auth Buttons */
+.nfx-mobile-auth {
+    margin-top: 20px;
+    border-top: 1px solid #222;
+    padding-top: 20px;
+}
+
+.nfx-mobile-auth a {
+    color: white;
+    display: block;
+    padding: 12px 0;
+    font-size: 17px;
+    text-decoration: none;
+}
+
+.nfx-mobile-auth a:hover {
+    color: #e50914;
+}
+
+
+/* ======================================================
+   LIVE SEARCH RESULTS PANEL
+====================================================== */
+
+.nfx-search-results {
+    margin-top: 12px;
+    background: #0f0f0f;
+    border-radius: 6px;
+    padding: 10px;
+    max-height: 350px;
+    overflow-y: auto;
+    display: none;
+    z-index: 33000;
+    
+    /* 🔴 NEW: Prevents body scrolling */
+    overscroll-behavior: contain; 
+}
+
+.nfx-search-results.active {
+    display: block;
+}
+
+/* Search Result Item - Popout Effect */
+.nfx-search-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    background: transparent;
+    
+    /* Smooth transition for the pop effect */
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    position: relative; /* Needed for z-index */
+}
+
+/* The Hover State */
+.nfx-search-item:hover {
+    background: #1a1a1a;
+    transform: scale(1.5); /* Scales up 5% */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    z-index: 10; /* Brings it to the front */
+}
+
+/* Ensure the image scales smoothly too */
+.nfx-search-item img {
+    width: 55px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 3px;
+    transition: box-shadow 0.2s ease;
+}
+
+.nfx-search-item:hover img {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+
+.nfx-search-title {
+    font-size: 15px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.nfx-search-meta {
+    font-size: 13px;
+    color: #aaa;
+}
+
+.nfx-search-loading {
+    padding: 10px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* Scrollbar styling */
+.nfx-search-results::-webkit-scrollbar {
+    width: 6px;
+}
+.nfx-search-results::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 3px;
+}
+
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+
+@media (max-width: 960px) {
+    .nfx-menu {
+        display: none !important;
+    }
+    .nfx-mobile-btn {
+        display: block !important;
+    }
+}
+
+@media (max-width: 768px) {
+    #nfx-header {
+        height: 60px;
+    }
+    .nfx-logo img {
+        height: 24px;
+    }
+}
+
+
+/* ======================================================
+   WORDPRESS ADMIN BAR FIX
+====================================================== */
+
+body.admin-bar #nfx-header {
+    top: 32px;
+}
+
+@media (max-width: 782px) {
+    body.admin-bar #nfx-header {
+        top: 46px;
+    }
+}
+
+/* ======================================================
+   Netflix Search Card Upgrade
+====================================================== */
+
+.nfx-search-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.nfx-search-sub {
+    font-size: 13px;
+    color: #aaa;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nfx-search-item.top {
+       background: rgb(255 0 13);
+    border-left: 7px solid #ffffff;
+    border-radius: 15px;
+}
+
+/* ======================================================
+   Netflix Search Badges (FINAL FIXED)
+====================================================== */
+
+.nfx-search-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 6px;
+    padding: 2px 6px;
+    font-size: 11px;
+    font-weight: 800;
+    border-radius: 4px;
+    line-height: 1;
+    letter-spacing: 0.5px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.08);
+}
+
+/* 4K */
+.nfx-badge-4k {
+    background: #f5c518;
+    color: #000;
+    border: 1px solid rgba(0,0,0,0.2);
+}
+
+/* HDR */
+.nfx-badge-hdr {
+    background: #7c3aed;
+    color: #fff;
+}
+
+/* 1080p (HD) */
+.nfx-badge-1080p {
+    background: #22c55e;
+    color: #000;
+}
+
+/* 720p */
+.nfx-badge-720p {
+    background: #3b82f6;
+    color: #fff;
+}
+
+/* SD */
+.nfx-badge-sd {
+    background: #4b5563;
+    color: #fff;
+}
+
+/* Show All Results Button */
+.nfx-show-all-btn {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    margin-top: 8px;
+    border-top: 1px solid #333;
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    background: #141414;
+    transition: background 0.2s ease;
+    border-radius: 0 0 4px 4px;
+}
+
+.nfx-show-all-btn:hover {
+    background: #222;
+    color: #e50914; /* Netflix Red on hover */
+}
+
+.nfx-show-all-btn i {
+    font-size: 12px;
+    margin-left: 5px;
+}
+/* ======================================================
+   GHOST CARD (Pop-out Animation)
+====================================================== */
+
+.nfx-ghost-card {
+    background: #141414; /* Match your dropdown background */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    border-radius: 4px;
+    z-index: 999999 !important;
+    border: 1px solid rgba(255,255,255,0.1);
+    
+    /* Animation settings */
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease, box-shadow 0.2s ease;
+    transform-origin: center center;
+    pointer-events: auto; /* Allow clicking */
+    text-decoration: none; /* Keep text clean */
+    
+    /* Ensure flex layout works on the clone */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+/* State when popped out */
+.nfx-ghost-card.popped {
+    transform: scale(1.2); /* Scale up 15% */
+}
+
+/* Ensure images inside ghost card look right */
+.nfx-ghost-card img {
+    width: 55px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 3px;
+}
+
+.nfx-ghost-card .nfx-search-title {
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.nfx-ghost-card .nfx-search-sub {
+    color: #bcbcbc;
+}
+
+/* ======================================================
+   NETFLIX BADGES & SHINE ANIMATION
+====================================================== */
+
+/* 1. Base Badge Style */
+.nfx-search-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 6px;
+    padding: 2px 6px;
+    font-size: 11px;
+    font-weight: 800;
+    border-radius: 4px;
+    line-height: 1;
+    letter-spacing: 0.5px;
+    
+    /* Essential for the shine to stay inside the badge */
+    position: relative; 
+    overflow: hidden; 
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* 2. The Shine Animation Keyframes */
+@keyframes nfx-shine-move {
+    0% {
+        transform: translateX(-150%) skewX(-20deg);
+        opacity: 0;
+    }
+    30% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateX(200%) skewX(-20deg);
+        opacity: 0;
+    }
+}
+
+/* 3. The Shine Overlay (Pseudo-element) */
+.nfx-search-badge::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* The shine gradient */
+    background: linear-gradient(
+        to right, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.636) 50%, 
+        transparent 100%
+    );
+    
+    /* Animation Settings: 3s duration, repeats infinitely */
+    animation: nfx-shine-move 3s infinite cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* ================= BADGE COLORS ================= */
+
+/* 4K (Gold) */
+.nfx-badge-4k {
+    background: linear-gradient(135deg, #f5c518 0%, #d4a017 100%);
+    color: #000;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* HDR (Deep Purple) */
+.nfx-badge-hdr {
+    background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.1);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+/* HD (Transparent/White) */
+.nfx-badge-1080p {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    color: #e5e5e5;
+    font-weight: 700;
+    padding: 1px 5px; /* Adjust padding for border style */
+}
+
+/* 720p (Blue) */
+.nfx-badge-720p {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: #fff;
+}
+
+/* SD (Gray) */
+.nfx-badge-sd {
+    background: #4b5563;
+    color: #ccc;
+}

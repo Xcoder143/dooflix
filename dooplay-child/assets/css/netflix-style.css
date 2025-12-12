@@ -1,0 +1,924 @@
+/* =========================================================================
+   NETFLIX CORE STYLES - REORGANIZED
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   1. VARIABLES & RESET (GLOBAL)
+   ------------------------------------------------------------------------- */
+:root {
+    --netflix-red: #e50914;
+    --netflix-black: #141414;
+    --netflix-dark: #181818;
+    --netflix-gray: #e5e5e5;
+    --netflix-green: #46d369;
+}
+
+/* HTML/BODY Reset */
+html, body {
+    background-color: var(--netflix-black);
+    color: white;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Wrapper Resets */
+#content, .module, .wrapper, #netflix-wrapper {
+    background-color: var(--netflix-black);
+    color: white;
+}
+
+/* Lazy Load Transition */
+.row__poster {
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+
+.row__poster.loaded {
+    opacity: 1;
+}
+
+/* -------------------------------------------------------------------------
+   2. BILLBOARD / BANNER (DESKTOP DEFAULT)
+   ------------------------------------------------------------------------- */
+/* Billboard Container */
+.nfx-billboard-slider {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Fixed height for Desktop */
+    overflow: hidden;
+    background: #000;
+}
+
+.banner-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    visibility: hidden; 
+    transition: opacity 1s ease-in-out, visibility 1s;
+    z-index: 1;
+}
+
+.banner-slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+}
+
+/* Legacy Banner Styles (Inner Content) */
+.banner {
+    color: white;
+    object-fit: contain;
+    height: 100vh;
+    background-size: cover;
+    background-position: center top;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.banner__contents {
+    margin-left: 30px;
+    padding-top: 25%;
+    height: 190px;
+    position: absolute;
+    z-index: 7;
+}
+
+.banner__title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    padding-bottom: 0.3rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    line-height: 1.1;
+    margin-bottom: 10px;
+}
+
+.banner__description {
+    width: 45rem;
+    max-width: 450px;
+    line-height: 1.3;
+    padding-top: 1rem;
+    font-size: 1.1rem;
+    height: 80px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.banner__meta {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.banner__button {
+    cursor: pointer;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 0.7rem 2rem;
+    margin-right: 1rem;
+    background-color: rgba(51, 51, 51, 0.5);
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
+}
+
+.banner__button.play { background-color: #fff; color: #000; }
+.banner__button.play:hover { background-color: rgba(255,255,255,0.75); }
+.banner__button.info:hover { background-color: #e6e6e6; color: #000; }
+
+.banner__fadeBottom {
+    height: 30rem;
+    background: linear-gradient(180deg, transparent, rgb(0 0 0 / 75%), #000000);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Hide Mobile Content on Desktop */
+.nfx-mobile-billboard {
+    display: none;
+}
+
+/* -------------------------------------------------------------------------
+   3. CONTENT ROWS & SLIDERS (DESKTOP)
+   ------------------------------------------------------------------------- */
+.netflix-content {
+    position: relative;
+    z-index: 20;
+    padding-bottom: 50px;
+}
+
+.row {
+    color: white;
+    margin-left: 20px;
+    position: relative;
+    margin-bottom: 2vw;
+}
+
+/* Row Headers */
+.row__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5vw;
+    margin-right: 4%;
+}
+
+.row h2 {
+    font-size: 1.5vw;
+    margin-bottom: 0.5vw;
+    font-weight: 600;
+    color: #e5e5e5;
+}
+
+.row__title a { color: #e5e5e5; text-decoration: none; transition: color 0.3s; }
+.row__title a:hover { color: white; }
+
+.see-all-btn {
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9vw;
+    font-weight: 600;
+    transition: transform 0.2s;
+}
+.see-all-btn:hover { color: white; transform: translateX(5px); }
+
+/* Slider Container */
+.row__sliders {
+    display: flex;
+    gap: 10px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding-top: 150px;
+    padding-bottom: 235px;
+    margin-top: -130px;
+    margin-bottom: -240px;
+    scroll-behavior: smooth;
+    padding-left: 15px;
+    pointer-events: none; /* Click-through padding fix */
+    
+    /* Hide Scrollbars */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.row__sliders::-webkit-scrollbar { display: none; }
+
+/* -------------------------------------------------------------------------
+   4. ITEM CARDS & HOVER EFFECTS (DESKTOP)
+   ------------------------------------------------------------------------- */
+.row__item {
+    margin-right: 10px;
+    transition: transform 450ms;
+    position: relative;
+    flex: 0 0 auto;
+    width: 250px;
+    cursor: pointer;
+    border-radius: 4px;
+    pointer-events: auto; /* Re-enable clicks */
+}
+
+/* Expansion Direction */
+.row__item:first-child { transform-origin: left center; }
+.row__item:last-child { transform-origin: right center; }
+
+/* Wrapper for Image (Handles Shine & Clipping) */
+.poster-wrapper {
+    position: relative;
+    overflow: hidden; 
+    border-radius: 4px;
+    z-index: 2;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.row__poster {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    aspect-ratio: 16/9; /* Default Landscape */
+    display: block;
+}
+
+/* Hover State */
+.row__item.hover-active {
+    transform: scale(1.4);
+    z-index: 999;
+}
+
+.row__item.hover-active .row__hover_info { display: block; }
+.row__item.hover-active .poster-wrapper {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* Hover Info Box */
+.row__hover_info {
+    display: none;
+    position: absolute;
+    top: 98%;
+    left: 0;
+    width: 100%;
+    background-color: var(--netflix-dark);
+    padding: 10px;
+    box-sizing: border-box;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.8);
+}
+
+.row__item:first-child .row__hover_info { left: 0; }
+.row__item:last-child .row__hover_info { left: auto; right: 0; }
+
+/* Icons & Meta */
+/* ------------------------------------------------------
+   ICON CONTAINER & BASE STYLES
+   ------------------------------------------------------ */
+.hover-buttons { 
+    display: flex; 
+    gap: 8px; 
+    margin-bottom: 10px; 
+    align-items: center;
+}
+
+.circle-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    
+    /* Center the background SVG */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 14px; 
+    
+    border: 2px solid rgba(255,255,255,0.5);
+    background-color: rgba(42,42,42,0.6); 
+    
+    display: block; 
+    flex-shrink: 0 !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease;
+}
+
+/* Clear old text/font icons */
+.circle-btn::before, 
+.circle-btn::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* ------------------------------------------------------
+   1. PLAY BUTTON
+   ------------------------------------------------------ */
+.circle-btn.play { 
+    background-color: white !important; 
+    border-color: white !important;
+    
+    /* Optical fix: Nudges the icon slightly right */
+    background-position: 55% center; 
+    
+    /* YOUR PATH HERE (Check spelling of 'assets') */
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8IS0tIFVwbG9hZGVkIHRvOiBTVkcgUmVwbywgd3d3LnN2Z3JlcG8uY29tLCBHZW5lcmF0b3I6IFNWRyBSZXBvIE1peGVyIFRvb2xzIC0tPg0KPHN2ZyB3aWR0aD0iODAwcHgiIGhlaWdodD0iODAwcHgiIHZpZXdCb3g9Ii0xIDAgMTIgMTIiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+DQogICAgDQogICAgPHRpdGxlPnBsYXkgWyMxMDAwXTwvdGl0bGU+DQogICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+DQogICAgPGRlZnM+DQoNCjwvZGVmcz4NCiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4NCiAgICAgICAgPGcgaWQ9IkRyaWJiYmxlLUxpZ2h0LVByZXZpZXciIHRyYW5zZm9ybT0idHJhbnNsYXRlKC02NS4wMDAwMDAsIC0zODAzLjAwMDAwMCkiIGZpbGw9IiMwMDAwMDAiPg0KICAgICAgICAgICAgPGcgaWQ9Imljb25zIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1Ni4wMDAwMDAsIDE2MC4wMDAwMDApIj4NCiAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMTguMDc0LDM2NTAuNzMzNSBMMTIuMzA4LDM2NTQuNjMxNSBDMTAuOTAzLDM2NTUuNTgxNSA5LDM2NTQuNTgzNSA5LDM2NTIuODk4NSBMOSwzNjQ1LjEwMTUgQzksMzY0My40MTU1IDEwLjkwMywzNjQyLjQxODUgMTIuMzA4LDM2NDMuMzY4NSBMMTguMDc0LDM2NDcuMjY2NSBDMTkuMzA2LDM2NDguMDk5NSAxOS4zMDYsMzY0OS45MDA1IDE4LjA3NCwzNjUwLjczMzUiIGlkPSJwbGF5LVsjMTAwMF0iPg0KDQo8L3BhdGg+DQogICAgICAgICAgICA8L2c+DQogICAgICAgIDwvZz4NCiAgICA8L2c+DQo8L3N2Zz4=');
+}
+
+.circle-btn.play:hover {
+    background-color: rgba(255,255,255, 0.8) !important;
+}
+
+/* ------------------------------------------------------
+   2. LIST / PLUS BUTTON
+   ------------------------------------------------------ */
+.circle-btn:not(.play) {
+    /* YOUR PATH HERE */
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gVXBsb2FkZWQgdG86IFNWRyBSZXBvLCB3d3cuc3ZncmVwby5jb20sIEdlbmVyYXRvcjogU1ZHIFJlcG8gTWl4ZXIgVG9vbHMgLS0+Cjxzdmcgd2lkdGg9IjgwMHB4IiBoZWlnaHQ9IjgwMHB4IiB2aWV3Qm94PSIwIDAgMzIgMzIiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sbnM6c2tldGNoPSJodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2gvbnMiPgogICAgCiAgICA8dGl0bGU+cGx1czwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoIEJldGEuPC9kZXNjPgogICAgPGRlZnM+Cgo8L2RlZnM+CiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBza2V0Y2g6dHlwZT0iTVNQYWdlIj4KICAgICAgICA8ZyBpZD0iSWNvbi1TZXQtRmlsbGVkIiBza2V0Y2g6dHlwZT0iTVNMYXllckdyb3VwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMzYyLjAwMDAwMCwgLTEwMzcuMDAwMDAwKSIgZmlsbD0iI2ZmZmZmZiI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0zOTAsMTA0OSBMMzgyLDEwNDkgTDM4MiwxMDQxIEMzODIsMTAzOC43OSAzODAuMjA5LDEwMzcgMzc4LDEwMzcgQzM3NS43OTEsMTAzNyAzNzQsMTAzOC43OSAzNzQsMTA0MSBMMzc0LDEwNDkgTDM2NiwxMDQ5IEMzNjMuNzkxLDEwNDkgMzYyLDEwNTAuNzkgMzYyLDEwNTMgQzM2MiwxMDU1LjIxIDM2My43OTEsMTA1NyAzNjYsMTA1NyBMMzc0LDEwNTcgTDM3NCwxMDY1IEMzNzQsMTA2Ny4yMSAzNzUuNzkxLDEwNjkgMzc4LDEwNjkgQzM4MC4yMDksMTA2OSAzODIsMTA2Ny4yMSAzODIsMTA2NSBMMzgyLDEwNTcgTDM5MCwxMDU3IEMzOTIuMjA5LDEwNTcgMzk0LDEwNTUuMjEgMzk0LDEwNTMgQzM5NCwxMDUwLjc5IDM5Mi4yMDksMTA0OSAzOTAsMTA0OSIgaWQ9InBsdXMiIHNrZXRjaDp0eXBlPSJNU1NoYXBlR3JvdXAiPgoKPC9wYXRoPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+');
+    
+    background-size: 16px; 
+}
+
+.circle-btn:not(.play):hover { 
+    border-color: rgb(255, 255, 255); 
+    background-color: rgba(42,42,42,1);
+}
+
+.circle-btn.arrow-down { 
+    margin-left: auto; 
+    background-image: none; 
+}
+
+.row__hover_info h4 { font-size: 10px; margin: 0 0 5px 0; }
+.meta-line { display: flex; gap: 8px; align-items: center; font-size: 9px; margin-bottom: 5px; font-weight: bold; }
+.age-box { border: 1px solid gray; padding: 0 3px; font-size: 8px; color: #fff; }
+.quality { border: 1px solid gray; padding: 0 3px; border-radius: 3px; font-size: 8px; }
+.genres-row { font-size: 9px; color: #ccc; }
+
+.slider-arrow { display: none !important; }
+
+/* Shine Effect */
+.poster-wrapper::before {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.3) 45%, transparent 60%);
+    content: '';
+    display: block;
+    z-index: 20;
+    pointer-events: none;
+    background-size: 250% 100%;
+    background-position: 200% 0;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.row__item:hover .poster-wrapper::before {
+    opacity: 1;
+    animation: shine-sweep 1s;
+}
+
+@keyframes shine-sweep {
+    0% { background-position: 200% 0; opacity: 0; }
+    10% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { background-position: -150% 0; opacity: 0; }
+}
+
+/* -------------------------------------------------------------------------
+   5. SPECIAL ROWS (TRENDING & VERTICAL)
+   ------------------------------------------------------------------------- */
+/* Trending (Top 10) */
+.trending-item {
+    display: flex !important;
+    align-items: center;
+    width: auto !important;
+    min-width: 280px;
+    margin-right: -20px; /* Overlap effect */
+    overflow: visible !important;
+    right: 75px;
+}
+
+.rank-number {
+    font-size: 220px;
+    font-family: 'Arial Black', Impact, sans-serif;
+    font-weight: 900;
+    line-height: 1;
+    color: #000; 
+    -webkit-text-stroke: 4px var(--netflix-red); 
+    text-shadow: none; 
+    position: relative;
+    right: -50px;
+    z-index: 1; 
+    letter-spacing: -10px;
+    pointer-events: none;
+}
+
+.trending-item .poster-wrapper {
+    width: 140px !important;
+    height: 210px !important;
+    aspect-ratio: 2/3 !important;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    flex-shrink: 0;
+}
+
+.trending-item .row__poster {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.trending-item:hover {
+    transform: scale(1.1) translateX(10px);
+    z-index: 100 !important;
+    margin-right: 30px; 
+}
+
+/* Vertical / Season Slider */
+.vertical-row .row__item { width: 150px !important; }
+.vertical-row .row__poster { aspect-ratio: 2/3 !important; height: 225px !important; object-fit: cover; }
+.vertical-row .circle-btn { width: 24px !important; height: 24px !important; font-size: 10px !important; border-width: 1px !important; }
+.vertical-row .hover-buttons { gap: 5px !important; margin-bottom: 5px !important; }
+
+/* -------------------------------------------------------------------------
+   6. GLOBAL BADGES & MATCH COLORS
+   ------------------------------------------------------------------------- */
+/* Dynamic Match Colors */
+.match.high-score, .match-score.high-score { color: #46d369; font-weight: bold; }
+.match.med-score, .match-score.med-score { color: #f5c518; font-weight: bold; }
+.match.low-score, .match-score.low-score { color: #ff5f5f; font-weight: bold; }
+.match.no-score, .match-score.no-score { color: #e5e5e5; }
+.hd-badge { border: 1px solid gray; padding: 2px 5px; font-size: 0.8rem; border-radius: 3px; }
+
+/* Top 10 Badge */
+.top10-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #e50914;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 6px;
+    z-index: 10;
+    line-height: 0.9;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    border-bottom-left-radius: 4px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    pointer-events: none;
+}
+
+.top10-badge .top-text { font-size: 8px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+.top10-badge .ten-text { font-size: 16px; font-weight: 800; letter-spacing: -1px; }
+
+/* Recently Added Badge */
+.recent-badge {
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #e50914;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: capitalize;
+    padding: 8px 16px;
+    border-radius: 4px 4px 0px 0px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 75%);
+    z-index: 20;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.banner__fadeBottoma {
+    height: 44rem;
+    background: linear-gradient(360deg, transparent, rgb(104 0 0 / 75%), #000000);
+    position: absolute;
+    /* bottom: 0; */
+    width: 100%;
+}
+
+
+/* =========================================================================
+   7. MOBILE RESPONSIVE STYLES (ACTIVE)
+   (Combines Final Centered Billboard + Fixed Badges)
+   ========================================================================= */
+
+@media screen and (max-width: 768px) {
+
+    .banner__fadeBottoma {
+    height: 44rem;
+    background: linear-gradient(360deg, transparent, rgb(104 0 0 / 75%), #141414);
+    position: absolute;
+    /* bottom: 0; */
+    width: 100%;
+}
+
+    /* --- A. GENERAL ADJUSTMENTS --- */
+    body.admin-bar #nfx-header { top: 46px !important; }
+    .netflix-nav-container { padding: 10px 15px; }
+    .head-main-nav { display: none; }
+    .nfx-menu { display: none !important; } 
+    .nfx-mobile-btn { display: block !important; }
+    .row { margin-left: 15px; }
+    .row h2 { font-size: 1.1rem; margin-bottom: 5px; }
+    .see-all-btn { font-size: 11px; }
+
+    /* --- B. BILLBOARD SLIDER (CENTERED FIX) --- */
+    /* --- B. BILLBOARD SLIDER (CENTERED FIX) --- */
+    /* --- B. BILLBOARD SLIDER (TRANSPARENT / NO BACKGROUND) --- */
+    .nfx-billboard-slider {
+        /* Height sizing */
+        height: 125vw; 
+        max-height: 580px;
+        min-height: 450px;
+        position: relative;
+        
+        /* UPDATED: REMOVED BACKGROUND COLOR (Transparent) */
+        background: transparent !important; 
+        
+        margin-bottom: 10px;
+        overflow: hidden;
+
+        /* CRITICAL FIX: Keeps the poster from going under the header */
+        margin-top: 40px; 
+    }
+
+    .banner-slide {
+        /* UPDATED: REMOVED ALL BACKGROUNDS */
+        background-image: none !important; 
+        background-color: transparent !important;
+        background: transparent !important;
+        
+        height: 100% !important;
+        width: 100% !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Hide Desktop Elements */
+    .banner__contents, 
+    .banner__fadeBottom {
+        display: none !important;
+    }
+
+    /* Mobile Poster Container */
+    .nfx-mobile-billboard {
+        display: flex; /* Flexbox for centering */
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        z-index: 10;
+        padding: 20px; /* Padding prevents edge touching */
+        box-sizing: border-box;
+    }
+
+    /* The Poster Card Itself */
+    .mob-poster-card {
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        aspect-ratio: 2 / 3; /* Standard Poster Ratio */
+        background: #222;
+        width: 100%;
+        max-width: 320px; /* Prevent it from getting too huge */
+    }
+
+    .mob-poster-img { 
+        width: 100%; 
+        height: 100%; 
+        object-fit: cover; 
+        display: block; 
+    }
+
+    /* Overlay Gradient */
+    .mob-poster-overlay {
+        position: absolute; 
+        bottom: 0; 
+        left: 0; 
+        width: 100%; 
+        height: 70%; /* Higher gradient for better text readability */
+        background: linear-gradient(to top, rgb(67 66 66 / 95%) 15%, rgb(0 0 0 / 49%) 60%, #00000000 100%);
+        display: flex; 
+        flex-direction: column; 
+        justify-content: flex-end;
+        padding: 15px; 
+        box-sizing: border-box;
+    }
+
+    /* Typography */
+    .mob-title {
+        font-size: 1.6rem; 
+        font-weight: 800; 
+        text-align: center; 
+        margin: 0 0 8px 0;
+        line-height: 1.1; 
+        color: #fff;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+
+    .mob-genres {
+        text-align: center; 
+        color: #ddd; 
+        font-size: 0.75rem; 
+        font-weight: 500;
+        margin-bottom: 12px; 
+        display: flex; 
+        flex-wrap: wrap; 
+        justify-content: center; 
+        gap: 5px;
+    }
+    
+    .mob-dot { color: #e50914; margin: 0 4px; }
+
+    .mob-actions { 
+        display: flex; 
+        gap: 8px; 
+        width: 100%; 
+    }
+
+    .mob-btn {
+        flex: 1; 
+        border: none; 
+        border-radius: 4px; 
+        padding: 8px 0;
+        font-size: 0.9rem; 
+        font-weight: 700; 
+        cursor: pointer;
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        gap: 6px;
+        text-decoration: none;
+    }
+    .mob-btn:active { transform: scale(0.96); }
+    .mob-btn.play { background: #fff; color: #000; }
+    .mob-btn.list { background: rgba(109, 109, 110, 0.7); color: #fff; }
+
+
+    /* --- C. SLIDER CARDS (STATIC OVERLAY MODE) --- */
+    
+    .row__item {
+        width: 220px; /* Standard mobile width */
+        margin-right: 8px;
+        margin-bottom: 5px;
+        border-radius: 4px;
+        overflow: hidden;
+        transform: none !important; /* Disable hover grow */
+        z-index: 1 !important;
+        transition: none !important;
+    }
+    
+    /* Force Poster to be clean */
+    .poster-wrapper {
+        border-radius: 4px !important;
+    }
+    
+    .row__item img { 
+        border-radius: 4px; 
+    }
+
+    /* Force Info to Show Always */
+    .row__hover_info {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: flex-end;
+        position: absolute !important;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        min-height: 60px;
+        background: linear-gradient(to top, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.4) 80%, transparent 100%);
+        padding: 20px 6px 6px 6px;
+        box-sizing: border-box;
+        box-shadow: none !important;
+        z-index: 5 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        border-radius: 0 0 4px 4px;
+    }
+
+    /* Mobile Text Styling */
+    .row__hover_info h4 {
+        display: block !important;
+        font-size: 11px !important;
+        font-weight: 700;
+        color: #fff !important;
+        margin: 0 0 2px 0 !important;
+        line-height: 1.2;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.9);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .meta-line {
+        display: flex !important;
+        font-size: 9px !important;
+        color: #ccc !important;
+        margin: 0 !important;
+    }
+
+    /* Hide unnecessary elements on mobile cards */
+    .row__hover_info .genres-row,
+    .row__hover_info .hover-buttons,
+    .row__hover_info .quality,
+    .row__hover_info .age-box, 
+    .row__hover_info .match {
+        display: none !important;
+    }
+
+
+    /* --- D. BADGES ON MOBILE --- */
+    
+    /* Top 10 Badge */
+    .top10-badge {
+        padding: 3px 4px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        right: 0; /* Align right edge */
+        top: 0;
+        z-index: 20;
+    }
+    .top10-badge .top-text { 
+        font-size: 6px; 
+        letter-spacing: 0.5px;
+    }
+    .top10-badge .ten-text { 
+        font-size: 12px; 
+        line-height: 0.9;
+    }
+
+    /* Recently Added Badge */
+    .recent-badge {
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #e50914;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: capitalize;
+    padding: 8px 16px;
+    border-radius: 4px 4px 0px 0px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 75%);
+    z-index: 20;
+    white-space: nowrap;
+    pointer-events: none;
+}
+    
+    /* Ensure badges show on the Mobile Billboard Card too */
+    .mob-poster-card .top10-badge {
+        padding: 5px 8px;
+    }
+    .mob-poster-card .top10-badge .top-text { font-size: 8px; }
+    .mob-poster-card .top10-badge .ten-text { font-size: 16px; }
+    
+    .mob-poster-card .recent-badge {
+        bottom: auto; 
+        top: 10px; /* On billboard, place it at top left so it doesn't cover buttons */
+        left: 10px;
+        transform: none;
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+}
+
+
+/* =========================================================================
+   8. COMMENTED OUT DUPLICATES & REDUNDANT CODE
+   (Preserved for reference, but disabled to prevent conflicts)
+   ========================================================================= */
+
+/* --- REDUNDANT BADGE DEFINITIONS (Already defined in Section 6) --- */
+/*
+.top10-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #e50914; 
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 6px;
+    z-index: 10;
+    line-height: 0.9;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    border-bottom-left-radius: 4px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    pointer-events: none;
+}
+.top10-badge .top-text { font-size: 8px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+.top10-badge .ten-text { font-size: 16px; font-weight: 800; letter-spacing: -1px; }
+
+.recent-badge {
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #e50914;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: capitalize;
+    padding: 8px 16px;
+    border-radius: 4px 4px 0px 0px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 75%);
+    z-index: 20;
+    white-space: nowrap;
+    pointer-events: none;
+}
+*/
+
+/* --- OLDER MOBILE QUERIES (Superseded by Section 7) --- */
+/*
+@media (max-width: 768px) {
+    .top10-badge { padding: 3px 5px; }
+    .top10-badge .top-text { font-size: 7px; }
+    .top10-badge .ten-text { font-size: 13px; }
+    .recent-badge { font-size: 9px; padding: 3px 6px; bottom: 6px; }
+}
+
+@media screen and (max-width: 768px) {
+    .nfx-billboard-slider {
+        height: 135vw; 
+        max-height: 650px; 
+        min-height: 500px;
+    }
+    .banner-slide {
+        background-image: none !important; 
+        background-color: #141414;
+    }
+    .banner__contents, .banner__fadeBottom { display: none !important; }
+    .mob-poster-card {
+        position: relative;
+        width: 100%;
+        max-width: 320px;
+        aspect-ratio: 2 / 3;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .mob-poster-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .mob-poster-overlay {
+        position: absolute;
+        bottom: 0; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(to top, rgba(0,0,0,0.95) 15%, rgba(0,0,0,0.6) 50%, transparent 100%);
+        display: flex; flex-direction: column; justify-content: flex-end;
+        padding: 20px; box-sizing: border-box;
+    }
+    .mob-title {
+        font-size: 1.8rem; font-weight: 800; text-align: center; margin: 0 0 10px 0;
+        line-height: 1.1; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+    .mob-genres {
+        text-align: center; color: #ddd; font-size: 0.85rem; font-weight: 500; margin-bottom: 15px;
+    }
+    .mob-actions { display: flex; gap: 10px; width: 100%; }
+    .mob-btn {
+        flex: 1; border: none; border-radius: 6px; padding: 10px 0;
+        font-size: 1rem; font-weight: 700; cursor: pointer;
+        display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none;
+        transition: transform 0.2s;
+    }
+    .mob-btn.play { background: #fff; color: #000; }
+    .mob-btn.list { background: rgba(109, 109, 110, 0.6); color: #fff; backdrop-filter: blur(5px); }
+}
+*/
+
+
+
+
+

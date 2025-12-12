@@ -1,0 +1,454 @@
+/* ======================================================
+   PART 1: HERO / BILLBOARD SECTION
+   File: series.php
+   ====================================================== */
+
+/* Main Container */
+.heros {
+    width: 100%;
+    height: 100vh; /* Fullscreen height */
+    min-height: 600px;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    align-items: flex-end; /* Align content to bottom */
+    padding-bottom: 0;
+    margin-bottom: 0;
+    background-attachment: fixed;
+}
+
+/* Dark Gradient Overlays */
+.heros::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, #000000 25%, rgba(20,20,20,0.8) 40%, transparent 80%);
+    z-index: 1;
+}
+
+.heros::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, #000000 0%, rgba(20,20,20,0.5) 50%, transparent 100%);
+    z-index: 1;
+}
+
+/* Content Grid */
+.heros-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px 60px 40px;
+    display: flex;
+    align-items: flex-end;
+    gap: 40px;
+}
+
+/* Poster Image */
+.heros-poster {
+    width: 240px;
+    min-width: 240px;
+    aspect-ratio: 2/3;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+    background: #222;
+    flex-shrink: 0;
+    opacity: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.heros-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Text Info Area */
+.meta {
+    flex: 1;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    padding-bottom: 10px;
+}
+
+.title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+/* Badges (Match Score, Year, HD) */
+.badges {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    color: #e5e5e5;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.badges .match-score { color: #46d369; font-weight: 800; }
+.badges .country-pill {
+    border: 1px solid #999;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    color: #ddd;
+    background: rgba(0,0,0,0.3);
+}
+
+.desc {
+    max-width: 700px;
+    color: #ddd;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-bottom: 25px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Buttons */
+.hero-buttons { display: flex; gap: 15px; }
+
+.btn-hero {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 28px;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform 0.2s, background 0.2s;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-play { background: #fff; color: #000; }
+.btn-play:hover { background: rgba(255, 255, 255, 0.75); }
+
+.btn-more { background: rgba(109, 109, 110, 0.7); color: #fff; backdrop-filter: blur(5px); }
+.btn-more:hover { background: rgba(109, 109, 110, 0.4); }
+
+.btn-hero i { margin-right: 10px; font-size: 1.2rem; }
+
+/* Bottom Fade */
+.banner__fadeBottoms {
+    height: 100%;
+    background: #090909;
+    position: absolute;
+    width: 100%;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-on-load { opacity: 0; animation: fadeInUp 0.8s ease forwards; }
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+
+
+/* ======================================================
+   PART 2: NETWORK / STUDIO LOGO
+   File: series.php
+   ====================================================== */
+
+.nfx-hero-network {
+    position: absolute;
+    top: 70%; /* Default desktop position */
+    right: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    z-index: 20;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    opacity: 0; 
+    animation: fadeInUp 1s ease 0.5s forwards;
+}
+
+/* "A Netflix Original Series" text */
+.nfx-presented-by {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #e5e5e5;
+    margin-bottom: 8px;
+    opacity: 0.9;
+}
+
+/* Image Logo (e.g. Netflix N) */
+.nfx-net-logo-img {
+    height: 50px; 
+    width: auto;
+    display: block;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+}
+
+/* Text Logo Fallback */
+.nfx-net-logo-text {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: 'Arial Black', Impact, sans-serif;
+    letter-spacing: -1px;
+    background: linear-gradient(to bottom, #ffffff 40%, #a0a0a0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+}
+
+
+/* ======================================================
+   PART 3: SEASONS & EPISODES LIST
+   Files: seasons.php & seasons_episodes.php
+   ====================================================== */
+
+/* --- SEASON TABS --- */
+.nfx-season-tabs {
+    border-bottom: 1px solid #333;
+    margin-bottom: 20px;
+}
+.nfx-season-list {
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    overflow-x: auto;
+}
+.nfx-season-btn {
+    background: transparent;
+    border: none;
+    color: #999;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 10px 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-bottom: 3px solid transparent;
+    transition: 0.3s;
+}
+.nfx-season-btn:hover,
+.nfx-season-btn.active {
+    color: #fff;
+    border-bottom-color: #e50914;
+}
+
+/* --- TAB SWITCH ANIMATION --- */
+@keyframes nfxTabFade {
+    0% { opacity: 0; transform: translateY(15px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+.nfx-season-grid {
+    animation: nfxTabFade 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* --- EPISODE LIST ROWS --- */
+.nfx-episodes-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.nfx-ep-row {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #222;
+    text-decoration: none !important;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    position: relative;
+    z-index: 100;
+    backface-visibility: hidden; 
+    transform: translateZ(0); 
+}
+
+.nfx-ep-row:hover {
+    background-color: #1f1f1f;
+    transform: scale(1.02); 
+    box-shadow: 0 10px 20px rgba(138, 0, 0, 0.5);
+    border-bottom-color: #e50914;
+    border-bottom: 5px solid #e50914;
+    z-index: 110;
+}
+
+/* Episode Number */
+.nfx-ep-num {
+    font-size: 1.5rem;
+    color: #777;
+    width: 40px;
+    text-align: center;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+.nfx-ep-row:hover .nfx-ep-num { color: #e50914; }
+
+/* Thumbnail & Play Icon */
+.nfx-ep-thumb {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0 20px;
+    flex-shrink: 0;
+    background: #000;
+}
+.nfx-ep-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+.nfx-ep-row:hover .nfx-ep-thumb img { opacity: 1; }
+
+.nfx-play-icon {
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDIwMDEwOTA0Ly9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9UUi8yMDAxL1JFQy1TVkctMjAwMTA5MDQvRFREL3N2ZzEwLmR0ZCI+CjxzdmcgdmVyc2lvbj0iMS4wIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiB3aWR0aD0iNTEyLjAwMDAwMHB0IiBoZWlnaHQ9IjUxMi4wMDAwMDBwdCIgdmlld0JveD0iMCAwIDUxMi4wMDAwMDAgNTEyLjAwMDAwMCIKIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiPgoKPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMC4wMDAwMDAsNTEyLjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIKZmlsbD0iI2U1MDkxNCIgc3Ryb2tlPSJub25lIj4KPHBhdGggZD0iTTIyODAgNTA5OSBjLTYxNyAtNjMgLTEyNDMgLTM5MSAtMTY0OSAtODYzIC01NTUgLTY0NSAtNzU2IC0xNDkzCi01NDggLTIzMTEgMjE5IC04NjEgODgyIC0xNTUwIDE3NDEgLTE4MTAgNDcyIC0xNDIgMTAwMCAtMTQyIDE0NzIgMCA3ODcgMjM4CjE0MDkgODMzIDE2NzkgMTYwNSAxODggNTQwIDE4OCAxMTQwIDAgMTY4MCAtMjcwIDc3MiAtODkyIDEzNjcgLTE2NzkgMTYwNQotMTQ2IDQ0IC0zMjYgODAgLTQ3MCA5NCAtMTI2IDEzIC00MjEgMTIgLTU0NiAweiBtNTM4IC0xOTY1IGM1MzIgLTI4NCA5NzAKLTUxOSA5NzUgLTUyMyA1IC02IC0xODg2IC0xMDI2IC0xOTQ1IC0xMDQ5IC00IC0yIC04IDQ2NyAtOCAxMDQyIDAgNTc1IDIKMTA0NiA1IDEwNDYgMyAwIDQ0MSAtMjMyIDk3MyAtNTE2eiIvPgo8L2c+Cjwvc3ZnPgo=');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40px;
+    background-color: rgba(0,0,0,0.4);
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    opacity: 0; transition: 0.3s; display: block;
+}
+.nfx-ep-row:hover .nfx-play-icon { opacity: 0.8; transform: scale(1.5); }
+
+/* Episode Details */
+.nfx-ep-details { flex: 1; min-width: 0; position: relative; z-index: 2; }
+.nfx-ep-top { display: flex; justify-content: space-between; margin-bottom: 5px; }
+.nfx-ep-title { color: #fff; font-size: 1rem; font-weight: 700; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nfx-ep-date { color: #666; font-size: 0.85rem; flex-shrink: 0; margin-left: 10px; }
+.nfx-ep-desc { color: #999; font-size: 0.9rem; margin: 0; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* Studio/Network Watermark (Hover Effect) */
+.nfx-studio-mark {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-family: 'Arial Black', Impact, sans-serif;
+    letter-spacing: -2px;
+    color: rgba(255, 255, 255, 0.966);
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.4s ease-out;
+    z-index: 0;
+}
+.nfx-ep-row:hover .nfx-studio-mark {
+    opacity: 1;
+    color: rgba(229, 9, 20, 0.15);
+    transform: translateY(-50%) scale(1.1);
+    right: 30px;
+}
+
+/* ======================================================
+   MOBILE RESPONSIVE FIXES
+   ====================================================== */
+@media (max-width: 768px) {
+    /* 1. Hero Container - Fill Screen */
+    .heros {
+        height: auto;
+        min-height: 85vh; 
+        padding-top: 60px; /* Space for Header */
+        align-items: flex-start;
+    }
+
+    /* 2. Content Centering */
+    .heros-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 40px 20px 20px;
+    }
+
+    /* 3. Poster Sizing */
+    .heros-poster {
+        /*width: 140px;
+        min-width: 140px;*/
+        margin-bottom: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    }
+
+    /* 4. Network Logo Positioning (Mobile: Below Genres) */
+    .nfx-hero-network {
+        position: relative;
+        /* top: auto; */
+        right: auto;
+        transform: none;
+        align-items: center;
+        margin-top: 50px;
+        margin-bottom: 15px;
+        width: 100%; /* Ensures it drops below genres flex items if parent is flex */
+    }
+
+    .nfx-net-logo-img {
+        height: 40px !important; /* Slightly smaller for mobile */
+    }
+
+    /* 5. Typography */
+    .title {
+        font-size: 1.8rem;
+        margin-bottom: 8px;
+    }
+
+    .badges {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 6px;
+        font-size: 0.85rem;
+    }
+
+    .desc {
+        font-size: 0.9rem;
+        -webkit-line-clamp: 3;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+
+    /* 6. Buttons Stack */
+    .hero-buttons {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .btn-hero {
+        flex: 1;
+        max-width: 45%; /* Two buttons side by side */
+        padding: 10px;
+        font-size: 0.95rem;
+    }
+
+    /* 7. Episodes List */
+    .nfx-ep-row {
+        flex-wrap: wrap;
+        padding: 15px 10px;
+    }
+    .nfx-ep-num { display: none; }
+    .nfx-ep-thumb { width: 120px; height: 68px; margin: 0 15px 0 0; }
+    .nfx-studio-mark { display: none; } /* Hide watermark on mobile */
+}
